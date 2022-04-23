@@ -1,6 +1,7 @@
 const UserModel = require('../db/models/users')
-const { riotApiKey } = require('../config')
+const { riotApiKey, authEmail, authPass } = require('../config')
 const Utils = require('../Utils')
+const nodemailer = require('nodemailer')
 
 class AuthController {
     async login(req, res) {
@@ -119,6 +120,29 @@ class AuthController {
         }
 
         await user.setPassword(password)
+
+        let transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: authEmail,
+                pass: authPass,
+            },
+        })
+
+        let mailOptions = {
+            from: 'Summoner Data',
+            to: `${email}`,
+            subject: `Thank You for registration`,
+            html: `body`,
+        }
+
+        transporter.sendMail(mailOptions, function (err, info) {
+            if (err) {
+                res.json(err);
+            } else {
+                res.json(info);
+            }
+        })
 
         try {
             await user.save()
