@@ -5,7 +5,7 @@ To launch:
 
 1) Run Postman and MongoDBCompass,
 2) In confing change riotApiKey to valid key (You can get it from here after You register: https://developer.riotgames.com)
-3) In terminal type: node index
+3) To launch server type in terminal: node index
 4) In Postman create new Post request at localhost:3001/api/auth/register and data {
     "login": "xxxxx",
     "password": "12345",
