@@ -103,7 +103,6 @@ class AuthController {
             return res.json({ success: false, code: 12, message: 'Invalid status' })
         }
 
-        //success
         let user = new UserModel({ login: login, email: email })
 
         user.InfoAboutRiotAcc = {
@@ -138,16 +137,16 @@ class AuthController {
 
         transporter.sendMail(mailOptions, function (err, info) {
             if (err) {
-                res.json(err);
+                res.json(err)
             } else {
-                res.json(info);
+              return res.json(info)
             }
         })
 
         try {
             await user.save()
         } catch (err) {
-            console.log(err)
+           return console.log(err)
         }
 
         res.json({ success: true })
