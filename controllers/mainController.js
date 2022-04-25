@@ -81,7 +81,7 @@ class MainController {
         let user = res.locals.user
         let response
         let matchesHistory = []
-        if(user.InfoAboutRiotAcc.matchesIds.length === 0) {
+        if(user.InfoAboutRiotAcc.matchesIds.length !== []) {
             for( let matchId of user.InfoAboutRiotAcc.matchesIds ) {
                 try {
                     response = await Utils.getAxios(`https://europe.api.riotgames.com/lol/match/v5/matches/`).get(`${matchId}?${riotApiKey}`)
