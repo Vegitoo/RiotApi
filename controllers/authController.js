@@ -1,5 +1,5 @@
 const UserModel = require('../db/models/users')
-const { riotApiKey, authEmail, authPass } = require('../config')
+const { riotApiKey } = require('../config')
 const Utils = require('../Utils')
 
 class AuthController {
